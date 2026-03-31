@@ -41,7 +41,7 @@ document.getElementById("startButton").onclick = () => {
   document.getElementById("startScreen").classList.remove("visible");
 
   // Messaggio narrativo
-  showMessage("Alza il volume per goderti l’esperienza al meglio.");
+  showMessage("Alza il volume e imposta la modalità schermo intero per goderti l’esperienza al meglio.");
 
   // Dopo il messaggio → mostra pagina 1
   setTimeout(() => {
