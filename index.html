@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Diario di Ellie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ <div id="diary">
+  <div class="page-lines"></div>
+
+  <div id="pageContainer" class="page-content"></div>
+
+  <div id="controls">
+    <button id="prevPage">←</button>
+    <button id="nextPage">→</button>
+  </div>
+</div>
+<div id="startScreen" class="fullscreen hidden">
+  <img src="assets/images/first.jpg" class="fullscreen-img">
+  <button id="startButton" class="start-btn">Inizia</button>
+</div>
+
+<div id="endScreen" class="fullscreen hidden">
+  <img src="assets/images/last.jpg" class="fullscreen-img">
+  <button id="restartButton" class="start-btn">Ricomincia</button>
+</div>
+
+<div id="messageOverlay" class="hidden">
+  <div id="messageBox">
+    <img src="assets/images/falena2.png" class="msg-icon">
+    <p id="messageText"></p>
+  </div>
+</div>
+
+
+  <script src="animations.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
