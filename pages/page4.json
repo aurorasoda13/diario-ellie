@@ -1,0 +1,9 @@
+{
+  "id": "page4",
+  "title": "La scoperta",
+  "text": "Sotto il ponte ho trovato questo. Non so chi l’abbia lasciato… ma sembra importante per qualcuno. Forse un ricordo. Forse un segno.",
+  "image": "Scatola.png",
+  "effects": ["boxOpen"],
+  "audio": null,
+  "unlock": null
+}

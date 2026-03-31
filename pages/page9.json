@@ -1,0 +1,9 @@
+{
+  "id": "page9",
+  "title": "Accordi dimenticati",
+  "text": "Ho provato a suonare qualcosa oggi. Le dita ricordano più di quanto ammetterei. Alcuni accordi fanno ancora male… altri invece sembrano guarire un po’. Forse è questo il bello della musica.",
+  "image": "chitarra2.png",
+  "effects": ["guitarStrum"],
+  "audio": "chitarra2.mp3",
+  "unlock": null
+}

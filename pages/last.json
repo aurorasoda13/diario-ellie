@@ -1,0 +1,10 @@
+{
+  "id": "last",
+  "title": "Per te",
+  "text": "Se sei arrivato fin qui… allora hai sfogliato un pezzetto del mio mondo. E voglio dirti una cosa: anche nei giorni più strani, più silenziosi, più incerti… tu sei una delle mie piccole cose belle.",
+  "image": "falena.png",
+  "effects": ["mothGlow"],
+  "audio": null,
+  "unlock": null,
+  "imageSize": "small"
+}

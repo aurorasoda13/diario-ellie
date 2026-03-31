@@ -1,0 +1,9 @@
+{
+  "id": "page2",
+  "title": "Il sentiero oltre il ponte",
+  "text": "C’è un vecchio ponte a nord. Non porta da nessuna parte… o forse sì. Oggi ho deciso di scoprirlo.",
+  "image": "Mappa.png",
+  "effects": ["mapZoom"],
+  "audio": null,
+  "unlock": "secretA"
+}

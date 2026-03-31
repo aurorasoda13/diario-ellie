@@ -1,0 +1,9 @@
+{
+  "id": "page6",
+  "title": "La foto stropicciata",
+  "text": "Ho trovato una vecchia foto nella tasca interna dello zaino. È stropicciata, quasi irriconoscibile. Ma gli occhi… quelli li riconoscerei ovunque. Non so perché l’ho tenuta. Forse per ricordarmi che non tutto si perde davvero.",
+  "image": "foto.png",
+  "effects": ["noteReveal"],
+  "audio": null,
+  "unlock": null
+}

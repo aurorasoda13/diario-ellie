@@ -1,0 +1,10 @@
+{
+  "id": "page1",
+  "title": "Respiro",
+  "text": "Oggi l’aria profuma di terra bagnata. Mi fermo un attimo… e respiro. Non so perché, ma mi fa sentire più leggera.",
+  "image": "foglia.png",
+  "effects": ["leafSwing"],
+  "audio": null,
+  "unlock": null,
+  "imageSize": "small"
+}

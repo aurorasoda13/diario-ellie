@@ -1,0 +1,9 @@
+{
+  "id": "page5",
+  "title": "La panchina",
+  "text": "Mi sono seduta sulla panchina vicino al vecchio campo da basket. Il legno scricchiolava sotto di me, come se ricordasse ogni persona che ci si è appoggiata prima. Ho chiuso gli occhi. Per un attimo, il mondo ha smesso di correre.",
+  "image": "panchina.png",
+  "effects": ["leafSwing"],
+  "audio": null,
+  "unlock": null
+}

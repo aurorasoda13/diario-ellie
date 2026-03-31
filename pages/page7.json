@@ -1,0 +1,10 @@
+{
+  "id": "page7",
+  "title": "La notte delle lucciole",
+  "text": "Stanotte il cielo sembrava respirare. Le lucciole si muovevano come piccole stelle cadute troppo presto. Le ho guardate danzare tra gli alberi e, per un secondo, ho pensato che forse anche io potrei brillare ancora.",
+  "image": "lucciole.png",
+  "effects": ["mothGlow"],
+  "audio": null,
+  "unlock": null,
+  "imageSize": "medium"
+}

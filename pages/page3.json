@@ -1,0 +1,10 @@
+{
+  "id": "page3",
+  "title": "Una piccola cosa bella",
+  "text": "A volte basta una piccola cosa bella per cambiare la giornata. Oggi ho trovato un fiore cresciuto tra le crepe dell’asfalto. Ostinato. Vivo. Mi ha fatto sorridere.",
+  "image": "Polaroid.png",
+  "effects": ["noteReveal"],
+  "audio": null,
+  "unlock": null,
+  "imageSize": "medium"
+}
