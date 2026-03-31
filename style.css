@@ -30,6 +30,10 @@ body {
     ),
     linear-gradient(180deg, #d8c9a8, #cbbba0);
 }
+#mainContent {
+  transform: scale(0.75);
+  transform-origin: top center;
+}
 
 /* ————————————————
    DIARIO
