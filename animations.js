@@ -1,4 +1,9 @@
 const Animations = {
+
+  /* ————————————————
+     Effetti estetici
+  ———————————————— */
+
   leafSwing(el) {
     el.animate([
       { transform: "rotate(-3deg)" },
@@ -18,19 +23,6 @@ const Animations = {
       ], { duration: 400, fill: "forwards" });
     });
   },
-noteReveal(el) {
-  el.addEventListener("click", () => {
-    showMessage("Forse anche io sono un po’ così.");
-  });
-},
-
-
-boxOpen(el) {
-  el.addEventListener("click", () => {
-    showMessage("Non smettere di cercare cose belle.");
-  });
-},
-
 
   mothGlow(el) {
     el.animate([
@@ -40,6 +32,51 @@ boxOpen(el) {
       duration: 2000,
       iterations: Infinity,
       direction: "alternate"
+    });
+  },
+
+  /* ————————————————
+     Effetti narrativi
+  ———————————————— */
+
+  noteReveal(el) {
+    el.addEventListener("click", () => {
+      showMessage("Forse anche io sono un po’ così.");
+    });
+  },
+
+  boxOpen(el) {
+    el.addEventListener("click", () => {
+      showMessage("Non smettere di cercare cose belle.");
+    });
+  },
+
+  /* ————————————————
+     Sblocco segreto C (tavolo → chiave)
+  ———————————————— */
+
+unlockKey(el) {
+  el.addEventListener("click", () => {
+    showMessage("Sotto una tavola allentata… qualcosa brilla.");
+    unlockedPages.add("table");     // <— AGGIUNGI QUESTO
+    unlockedPages.add("secretC");   // <— GIUSTO
+    showSecretIcon();
+  });
+},
+
+  /* ————————————————
+     Sblocco segreto D tramite rebus Morse
+     (chiave → rebus → stanza)
+  ———————————————— */
+
+  startRiddle(el) {
+    el.addEventListener("click", () => {
+      showRiddle(
+        "-.-.   ....   ..   .-   ...-   .\n\n" +
+        "Ogni gruppo è una lettera.\n" +
+        "Decifra il codice. Qual è la parola?",
+        "chiave"
+      );
     });
   }
 };
