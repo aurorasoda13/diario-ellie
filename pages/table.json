@@ -1,0 +1,9 @@
+{
+  "id": "table",
+  "title": "Il tavolo",
+  "text": "Il legno è segnato, consumato dal tempo. Sotto una tavola allentata, qualcosa sembra vibrare… come se aspettasse di essere trovato.",
+  "image": "tavolo.png",
+  "imageSize": "medium",
+  "effects": ["unlockKey"],
+  "audio": "wood.mp3"
+}
