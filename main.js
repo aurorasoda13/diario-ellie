@@ -2,6 +2,7 @@ let currentPage = 0;
 let pages = [];
 let audioUnlocked = false;
 let currentAudio = null;
+let unlockedPages = new Set();
 
 /* ————————————————
    SBLOCCO AUDIO
@@ -16,10 +17,13 @@ document.addEventListener("click", () => {
 async function loadPages() {
   const pageFiles = [
     "page1.json", "page2.json", "page3.json",
-    "page4.json", "secretA.json", "secretB.json", 
-     "page5.json", "page6.json",
-    "page7.json", "page8.json", "page9.json", 
-   "last.json",
+    "page4.json", "secretA.json", "secretB.json",
+    "page5.json", "page6.json",
+    "page7.json", "page8.json", "page9.json",
+    "table.json",      // nuova pagina
+    "secretC.json",    // chiave
+    "secretD.json",    // stanza
+    "last.json"
   ];
 
   for (let file of pageFiles) {
@@ -40,10 +44,8 @@ function showStartScreen() {
 document.getElementById("startButton").onclick = () => {
   document.getElementById("startScreen").classList.remove("visible");
 
-  // Messaggio narrativo
-  showMessage("Alza il volume e imposta la modalità schermo intero per goderti l’esperienza al meglio.");
+  showMessage("Alza il volume per goderti l’esperienza al meglio.");
 
-  // Dopo il messaggio → mostra pagina 1
   setTimeout(() => {
     showPage(0);
   }, 600);
@@ -57,10 +59,12 @@ function showEndScreen() {
 }
 
 document.getElementById("restartButton").onclick = () => {
-   if (currentAudio) {
+
+  if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
   }
+
   document.getElementById("endScreen").classList.remove("visible");
   showStartScreen();
 };
@@ -74,8 +78,15 @@ function showPage(index) {
     return;
   }
 
-  const container = document.getElementById("pageContainer");
   const page = pages[index];
+
+  // BLOCCO PAGINE NON SBLOCCATE
+  if (page.unlock && !unlockedPages.has(page.unlock)) {
+    showMessage("Questa pagina è ancora chiusa.");
+    return;
+  }
+
+  const container = document.getElementById("pageContainer");
   const sizeClass = page.imageSize ? `img-${page.imageSize}` : "";
 
   container.innerHTML = `
@@ -88,12 +99,12 @@ function showPage(index) {
 
   const sketch = document.getElementById("sketch");
 
-  /* — Animazioni — */
+  // EFFETTI
   page.effects.forEach(effect => {
     if (Animations[effect]) Animations[effect](sketch);
   });
 
-  /* — AUDIO — */
+  // AUDIO
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
@@ -102,12 +113,12 @@ function showPage(index) {
   if (page.audio && audioUnlocked) {
     currentAudio = new Audio(`assets/audio/${page.audio}`);
     currentAudio.volume = 0.6;
-    currentAudio.play().catch(err => console.log("Audio bloccato:", err));
+    currentAudio.play().catch(() => {});
   }
 }
 
 /* ————————————————
-   MESSAGGIO CENTRALE
+   OVERLAY MESSAGGI
 ——————————————— */
 function showMessage(text) {
   const overlay = document.getElementById("messageOverlay");
@@ -118,6 +129,44 @@ function showMessage(text) {
 
   overlay.onclick = () => {
     overlay.classList.remove("visible");
+  };
+}
+
+/* ————————————————
+   ICONA SEGRETA
+——————————————— */
+function showSecretIcon() {
+  const icon = document.getElementById("secretIcon");
+  icon.classList.add("visible");
+
+  setTimeout(() => {
+    icon.classList.remove("visible");
+  }, 2000);
+}
+
+/* ————————————————
+   OVERLAY REBUS
+——————————————— */
+function showRiddle(question, answer) {
+  const overlay = document.getElementById("riddleOverlay");
+  const text = document.getElementById("riddleText");
+  const input = document.getElementById("riddleInput");
+  const submit = document.getElementById("riddleSubmit");
+
+  text.textContent = question;
+  input.value = "";
+  overlay.classList.add("visible");
+
+  submit.onclick = () => {
+    if (input.value.trim().toLowerCase() === answer.toLowerCase()) {
+      overlay.classList.remove("visible");
+
+      unlockedPages.add("secretD");
+      showSecretIcon();
+      showMessage("Il codice è stato decifrato. La chiave rivela la stanza.");
+  } else {
+  text.textContent = question + "\n\n❌ Risposta errata. Riprova.";
+}
   };
 }
 
