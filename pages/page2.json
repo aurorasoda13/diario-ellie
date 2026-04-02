@@ -5,5 +5,5 @@
   "image": "Mappa.png",
   "effects": ["mapZoom"],
   "audio": null,
-  "unlock": "secretA"
+  "unlock": null
 }
