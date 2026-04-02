@@ -6,8 +6,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- tutto il tuo sito -->
 
- <div id="diary">
+<div id="ui-scale">
+<div id="diary">
   <div class="page-lines"></div>
 
   <div id="pageContainer" class="page-content"></div>
@@ -17,16 +19,26 @@
     <button id="nextPage">→</button>
   </div>
 </div>
+</div>
+<!-- ————————————————
+     SCHERMATA INIZIALE
+——————————————— -->
 <div id="startScreen" class="fullscreen hidden">
   <img src="assets/images/first.jpg" class="fullscreen-img">
   <button id="startButton" class="start-btn">Inizia</button>
 </div>
 
+<!-- ————————————————
+     SCHERMATA FINALE
+——————————————— -->
 <div id="endScreen" class="fullscreen hidden">
   <img src="assets/images/last.jpg" class="fullscreen-img">
   <button id="restartButton" class="start-btn">Ricomincia</button>
 </div>
 
+<!-- ————————————————
+     OVERLAY MESSAGGI
+——————————————— -->
 <div id="messageOverlay" class="hidden">
   <div id="messageBox">
     <img src="assets/images/falena2.png" class="msg-icon">
@@ -34,8 +46,26 @@
   </div>
 </div>
 
+<!-- ————————————————
+     ICONA PAGINA SEGRETA
+——————————————— -->
+<div id="secretIcon" class="hidden">
+  <img src="assets/images/falena2.png" class="secret-icon">
+</div>
 
-  <script src="animations.js"></script>
-  <script src="main.js"></script>
+<!-- ————————————————
+     OVERLAY REBUS
+——————————————— -->
+<div id="riddleOverlay" class="hidden">
+  <div id="riddleBox">
+    <p id="riddleText"></p>
+    <input id="riddleInput" placeholder="Risposta...">
+    <button id="riddleSubmit">OK</button>
+  </div>
+</div>
+
+<script src="animations.js"></script>
+<script src="main.js"></script>
+
 </body>
 </html>
