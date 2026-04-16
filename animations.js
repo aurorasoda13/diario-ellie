@@ -68,6 +68,37 @@ unlockKey(el) {
      Sblocco segreto D tramite rebus Morse
      (chiave → rebus → stanza)
   ———————————————— */
+  cipherNote(el) {
+  el.addEventListener("click", () => {
+    showRiddle(
+      "Nfttbhf gps zpv\n\nOgni lettera è spostata di una posizione in avanti.",
+      "message for you",
+      "page16"
+      
+    );
+  });
+},
+woodPattern(el) {
+  el.addEventListener("click", () => {
+    showRiddle(
+      "Guarda solo i segni più profondi.\nFormano lettere.",
+      "Torna al fiume",
+      "page17"
+    );
+  });
+},
+soundStones(el) {
+  el.addEventListener("click", () => {
+    showRiddle(
+      "Sul sasso grande c’è un’unica incisione:\n\n" +
+      "I_  P_OU_\n\n" +
+      "Mancano solo tre lettere.\n" +
+      "Le conosci già.",
+      "im proud",
+      "page18"
+    );
+  });
+},
 
   startRiddle(el) {
     el.addEventListener("click", () => {
@@ -80,3 +111,5 @@ unlockKey(el) {
     });
   }
 };
+
+
