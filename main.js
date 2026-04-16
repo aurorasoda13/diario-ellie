@@ -23,6 +23,11 @@ async function loadPages() {
     "table.json",      // nuova pagina
     "secretC.json",    // chiave
     "secretD.json",    // stanza
+    "page16.json",
+    "page17.json",
+    "page18.json",
+    "page19.json",
+
     "last.json"
   ];
 
@@ -100,9 +105,12 @@ function showPage(index) {
   const sketch = document.getElementById("sketch");
 
   // EFFETTI
+ if (page.effects && Array.isArray(page.effects)) {
   page.effects.forEach(effect => {
     if (Animations[effect]) Animations[effect](sketch);
   });
+}
+
 
   // AUDIO
   if (currentAudio) {
@@ -147,7 +155,7 @@ function showSecretIcon() {
 /* ————————————————
    OVERLAY REBUS
 ——————————————— */
-function showRiddle(question, answer) {
+function showRiddle(question, answer, unlockId = null) {
   const overlay = document.getElementById("riddleOverlay");
   const text = document.getElementById("riddleText");
   const input = document.getElementById("riddleInput");
@@ -161,14 +169,18 @@ function showRiddle(question, answer) {
     if (input.value.trim().toLowerCase() === answer.toLowerCase()) {
       overlay.classList.remove("visible");
 
-      unlockedPages.add("secretD");
-      showSecretIcon();
-      showMessage("Il codice è stato decifrato. La chiave rivela la stanza.");
-  } else {
-  text.textContent = question + "\n\n❌ Risposta errata. Riprova.";
-}
+      if (unlockId) {
+        unlockedPages.add(unlockId);
+        showSecretIcon();
+      }
+
+      showMessage("Codice risolto.");
+    } else {
+      text.textContent = question + "\n\n❌ Risposta errata. Riprova.";
+    }
   };
 }
+
 
 /* ————————————————
    CONTROLLI PAGINE
