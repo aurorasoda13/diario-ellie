@@ -1,0 +1,15 @@
+{
+  "id": "page18",
+  "title": "Il fiume",
+  "text": "Sono tornata al fiume. L’acqua scorreva lenta, come se stesse aspettando. Tra i sassi ne ho trovato uno più grande, inciso con lettere mancanti: I_ P_OU_. Non era un errore. Era un messaggio da completare. Joel… ora so cosa volevi dire.",
+  "image": "fiume.png",
+  "effects": ["soundStones"],
+  "audio": "river.mp3",
+  "unlock": "page17",
+"riddle": {
+  "type": "pattern",
+  "hint": "Sul sasso grande c’è un’unica incisione: I_  P_OU_. Mancano solo tre lettere.",
+  "solution": "improud"
+}
+
+}

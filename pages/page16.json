@@ -1,0 +1,15 @@
+{
+  "id": "page16",
+  "title": "Il biglietto piegato",
+  "text": "Nella tasca interna della giacca ho trovato un biglietto. La carta è spessa, piegata in quattro. La grafia è quella di Joel… ma le parole non hanno senso. O forse sì. Forse voleva che lo capissi solo io.",
+  "image": "biglietto.png",
+  "effects": ["cipherNote"],
+  "audio": "paper.mp3",
+  "unlock": null,
+  "riddle": {
+    "type": "substitution",
+    "hint": "Ogni lettera è spostata di una posizione indietro nell’alfabeto.",
+    "encrypted": "Mfttbhf gps zpv",
+    "solution": "Message for you"
+  }
+}

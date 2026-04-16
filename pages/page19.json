@@ -1,0 +1,11 @@
+{
+  "id": "page19",
+  "title": "Capire",
+  "text": "Sono rimasta al fiume per un po’. L’acqua scorreva come se non gliene importasse di niente… o di tutto. Il sasso, le lettere… era più semplice di quanto pensassi. Forse Joel voleva solo che guardassi meglio. Che ascoltassi. Mentre mi alzavo ho visto qualcosa tra i sassi: una foto. Io e lui. Consumata, quasi cancellata. Non ricordavo nemmeno di averla persa. Fa male… ma non voglio lasciarla qui.",
+  "image": "joel.png",
+  "effects": ["fadeIn"],
+  "audio": null,
+  "unlock": "page18",
+    "imageSize": "medium"
+
+}

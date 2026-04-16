@@ -1,0 +1,15 @@
+{
+  "id": "page17",
+  "title": "La tavola incisa",
+  "text": "Sotto il pavimento della vecchia casa ho trovato una tavola incisa. Non è un disegno. Non è un simbolo. È… qualcosa che Joel ha lasciato. Linee, tagli, segni. Come se volesse dire qualcosa senza usare parole.",
+  "image": "incisione.png",
+  "effects": ["woodPattern"],
+  "audio": "wood.mp3",
+  "unlock": "page16",
+  "riddle": {
+    "type": "pattern",
+    "hint": "Leggi solo i segni più profondi: formano lettere.",
+    "patternImage": "incisione.png",
+    "solution": "Torna al fiume"
+  }
+}
