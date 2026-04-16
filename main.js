@@ -163,14 +163,15 @@ function showRiddle(question, answer, unlockId = null) {
   const submit = document.getElementById("riddleSubmit");
   const closeBtn = document.getElementById("riddleClose");
 
-closeBtn.onclick = () => {
-  overlay.classList.remove("visible");
-};
 
 
   text.textContent = question;
   input.value = "";
   overlay.classList.add("visible");
+   closeBtn.onclick = () => {
+  overlay.classList.remove("visible");
+};
+
 
   submit.onclick = () => {
     if (input.value.trim().toLowerCase() === answer.toLowerCase()) {
