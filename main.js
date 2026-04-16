@@ -156,10 +156,17 @@ function showSecretIcon() {
    OVERLAY REBUS
 ——————————————— */
 function showRiddle(question, answer, unlockId = null) {
+  
   const overlay = document.getElementById("riddleOverlay");
   const text = document.getElementById("riddleText");
   const input = document.getElementById("riddleInput");
   const submit = document.getElementById("riddleSubmit");
+  const closeBtn = document.getElementById("riddleClose");
+
+closeBtn.onclick = () => {
+  overlay.classList.remove("visible");
+};
+
 
   text.textContent = question;
   input.value = "";
