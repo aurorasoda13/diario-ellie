@@ -350,6 +350,7 @@ h2 {
   box-shadow: 0 0 25px rgba(0,0,0,0.35);
   animation: popIn 0.35s ease;
   font-family: "Caveat", cursive;
+  position: relative;
 }
 
 #riddleText {
@@ -394,4 +395,18 @@ h2 {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+  opacity: 1;
 }
