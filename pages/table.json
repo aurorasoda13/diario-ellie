@@ -5,5 +5,5 @@
   "image": "tavolo.png",
   "imageSize": "medium",
   "effects": ["unlockKey"],
-  "audio": "wood.mp3"
+  "audio": null
 }
