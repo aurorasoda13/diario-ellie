@@ -410,3 +410,33 @@ h2 {
 .close-btn:hover {
   opacity: 1;
 }
+
+#resumeScreen {
+  display: none;
+ background:url("assets/images/sfondo-diario.png") center/cover no-repeat;
+
+}
+
+#resumeScreen.visible {
+  display: flex;
+}
+
+.choice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+    background: #f2e7d5;
+  padding: 30px 40px;
+  border-radius: 8px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0,0,0,0.35);
+  animation: popIn 0.35s ease;
+  font-family: "Caveat", cursive;
+  position: relative;
+}
+
+button {
+  border: 1px solid #000 !important;
+}
