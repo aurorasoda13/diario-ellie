@@ -3,32 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Diario di Ellie</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- FAVICON -->
   <link rel="icon" type="image/png" href="assets/icons/favicon.png">
 
-  
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- tutto il tuo sito -->
 
 <div id="ui-scale">
-<div id="diary">
-  <div class="page-lines"></div>
 
-  <div id="pageContainer" class="page-content"></div>
+  <div id="diary">
+    <div class="page-lines"></div>
 
-  <div id="controls">
-    <button id="prevPage">←</button>
-    <button id="nextPage">→</button>
+    <div id="pageContainer" class="page-content"></div>
+
+    <div id="controls">
+      <button id="prevPage">←</button>
+      <button id="nextPage">→</button>
+    </div>
   </div>
+
 </div>
-</div>
+
 <!-- ————————————————
      SCHERMATA INIZIALE
 ——————————————— -->
 <div id="startScreen" class="fullscreen hidden">
   <img src="assets/images/first.jpg" class="fullscreen-img">
   <button id="startButton" class="start-btn">Inizia</button>
+</div>
+
+<!-- ————————————————
+     SCHERMATA SCELTA: RIPRENDI / RICOMINCIA
+——————————————— -->
+<div id="resumeScreen" class="fullscreen hidden">
+  <div class="choice-box">
+    <button id="resumeBtn" class="start-btn">Riprendi</button>
+    <button id="restartBtn" class="start-btn">Inizia da capo</button>
+  </div>
 </div>
 
 <!-- ————————————————
@@ -61,9 +75,8 @@
 ——————————————— -->
 <div id="riddleOverlay" class="hidden">
   <div id="riddleBox">
-     <span id="riddleClose" class="close-btn">✕</span>
+    <span id="riddleClose" class="close-btn">✕</span>
     <p id="riddleText"></p>
-
     <input id="riddleInput" placeholder="Risposta...">
     <button id="riddleSubmit">OK</button>
   </div>
