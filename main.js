@@ -4,6 +4,12 @@ let audioUnlocked = false;
 let currentAudio = null;
 let unlockedPages = new Set();
 
+const savedUnlocks = localStorage.getItem("unlockedPages");
+if (savedUnlocks) {
+  unlockedPages = new Set(JSON.parse(savedUnlocks));
+}
+
+
 /* ————————————————
    SBLOCCO AUDIO
 ——————————————— */
@@ -73,6 +79,9 @@ document.getElementById("restartBtn").onclick = () => {
   document.getElementById("resumeScreen").classList.remove("visible");
   currentPage = 0;
   showPage(0);
+  localStorage.removeItem("unlockedPages");
+  unlockedPages = new Set();
+
 };
 
 /* ————————————————
@@ -199,6 +208,7 @@ function showRiddle(question, answer, unlockId = null) {
 
       if (unlockId) {
         unlockedPages.add(unlockId);
+        localStorage.setItem("unlockedPages", JSON.stringify([...unlockedPages]));
         showSecretIcon();
       }
 
