@@ -20,14 +20,13 @@ async function loadPages() {
     "page4.json", "secretA.json", "secretB.json",
     "page5.json", "page6.json",
     "page7.json", "page8.json", "page9.json",
-    "table.json",      // nuova pagina
-    "secretC.json",    // chiave
-    "secretD.json",    // stanza
+    "table.json",
+    "secretC.json",
+    "secretD.json",
     "page16.json",
     "page17.json",
     "page18.json",
     "page19.json",
-
     "last.json"
   ];
 
@@ -49,11 +48,31 @@ function showStartScreen() {
 document.getElementById("startButton").onclick = () => {
   document.getElementById("startScreen").classList.remove("visible");
 
-  showMessage("Alza il volume per goderti l’esperienza al meglio.");
+  const saved = localStorage.getItem("lastPage");
 
-  setTimeout(() => {
+  if (saved !== null) {
+    document.getElementById("resumeScreen").classList.add("visible");
+  } else {
+    currentPage = 0;
     showPage(0);
-  }, 600);
+  }
+};
+
+/* ————————————————
+   SCELTA: RIPRENDI / RICOMINCIA
+——————————————— */
+document.getElementById("resumeBtn").onclick = () => {
+  const saved = parseInt(localStorage.getItem("lastPage"));
+  document.getElementById("resumeScreen").classList.remove("visible");
+  currentPage = saved;
+  showPage(saved);
+};
+
+document.getElementById("restartBtn").onclick = () => {
+  localStorage.removeItem("lastPage");
+  document.getElementById("resumeScreen").classList.remove("visible");
+  currentPage = 0;
+  showPage(0);
 };
 
 /* ————————————————
@@ -105,12 +124,11 @@ function showPage(index) {
   const sketch = document.getElementById("sketch");
 
   // EFFETTI
- if (page.effects && Array.isArray(page.effects)) {
-  page.effects.forEach(effect => {
-    if (Animations[effect]) Animations[effect](sketch);
-  });
-}
-
+  if (page.effects && Array.isArray(page.effects)) {
+    page.effects.forEach(effect => {
+      if (Animations[effect]) Animations[effect](sketch);
+    });
+  }
 
   // AUDIO
   if (currentAudio) {
@@ -123,6 +141,9 @@ function showPage(index) {
     currentAudio.volume = 0.6;
     currentAudio.play().catch(() => {});
   }
+
+  // SALVA L’ULTIMA PAGINA VISITATA
+  localStorage.setItem("lastPage", index);
 }
 
 /* ————————————————
@@ -156,22 +177,21 @@ function showSecretIcon() {
    OVERLAY REBUS
 ——————————————— */
 function showRiddle(question, answer, unlockId = null) {
-  
   const overlay = document.getElementById("riddleOverlay");
   const text = document.getElementById("riddleText");
   const input = document.getElementById("riddleInput");
   const submit = document.getElementById("riddleSubmit");
   const closeBtn = document.getElementById("riddleClose");
 
-
+  if (closeBtn) {
+    closeBtn.onclick = () => {
+      overlay.classList.remove("visible");
+    };
+  }
 
   text.textContent = question;
   input.value = "";
   overlay.classList.add("visible");
-   closeBtn.onclick = () => {
-  overlay.classList.remove("visible");
-};
-
 
   submit.onclick = () => {
     if (input.value.trim().toLowerCase() === answer.toLowerCase()) {
@@ -189,18 +209,19 @@ function showRiddle(question, answer, unlockId = null) {
   };
 }
 
-
 /* ————————————————
    CONTROLLI PAGINE
 ——————————————— */
 document.getElementById("nextPage").onclick = () => {
   currentPage++;
+  localStorage.setItem("lastPage", currentPage);
   showPage(currentPage);
 };
 
 document.getElementById("prevPage").onclick = () => {
   if (currentPage > 0) {
     currentPage--;
+    localStorage.setItem("lastPage", currentPage);
     showPage(currentPage);
   }
 };
