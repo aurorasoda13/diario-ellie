@@ -69,6 +69,7 @@ document.getElementById("startButton").onclick = () => {
 ——————————————— */
 document.getElementById("resumeBtn").onclick = () => {
   const saved = parseInt(localStorage.getItem("lastPage"));
+ 
   document.getElementById("resumeScreen").classList.remove("visible");
   currentPage = saved;
   showPage(saved);
@@ -101,6 +102,16 @@ document.getElementById("restartButton").onclick = () => {
   document.getElementById("endScreen").classList.remove("visible");
   showStartScreen();
 };
+
+document.getElementById("endPrev").onclick = () => {
+  const end = document.getElementById("endScreen");
+  end.classList.remove("visible");
+
+  currentPage = pages.length - 2; // ultima pagina vera
+  showPage(currentPage);
+};
+
+
 
 /* ————————————————
    MOSTRA PAGINA
@@ -234,6 +245,9 @@ document.getElementById("prevPage").onclick = () => {
     localStorage.setItem("lastPage", currentPage);
     showPage(currentPage);
   }
+
+
+
 };
 
 loadPages();
