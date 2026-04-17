@@ -5,7 +5,7 @@
   "image": "fiume.png",
   "effects": ["soundStones"],
   "audio": "river.mp3",
-  "unlock": "page17",
+  "unlock": "page18",
 "riddle": {
   "type": "pattern",
   "hint": "Sul sasso grande c’è un’unica incisione: I_  P_OU_. Mancano solo tre lettere.",
