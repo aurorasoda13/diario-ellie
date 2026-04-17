@@ -5,7 +5,7 @@
   "image": "incisione.png",
   "effects": ["woodPattern"],
   "audio": "wood.mp3",
-  "unlock": "page16",
+  "unlock": "page17",
   "riddle": {
     "type": "pattern",
     "hint": "Leggi solo i segni più profondi: formano lettere.",
