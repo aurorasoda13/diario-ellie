@@ -1,116 +1,239 @@
-const Animations = {
+let currentPage = 0;
+let pages = [];
+let audioUnlocked = false;
+let currentAudio = null;
+let unlockedPages = new Set();
 
-  /* ————————————————
-     Effetti estetici
-  ———————————————— */
+const savedUnlocks = localStorage.getItem("unlockedPages");
+if (savedUnlocks) {
+  unlockedPages = new Set(JSON.parse(savedUnlocks));
+}
 
-  leafSwing(el) {
-    el.animate([
-      { transform: "rotate(-3deg)" },
-      { transform: "rotate(3deg)" }
-    ], {
-      duration: 3000,
-      iterations: Infinity,
-      direction: "alternate"
-    });
-  },
 
-  mapZoom(el) {
-    el.addEventListener("click", () => {
-      el.animate([
-        { transform: "scale(1)" },
-        { transform: "scale(1.2)" }
-      ], { duration: 400, fill: "forwards" });
-    });
-  },
+/* ————————————————
+   SBLOCCO AUDIO
+——————————————— */
+document.addEventListener("click", () => {
+  audioUnlocked = true;
+});
 
-  mothGlow(el) {
-    el.animate([
-      { opacity: 0.7 },
-      { opacity: 1 }
-    ], {
-      duration: 2000,
-      iterations: Infinity,
-      direction: "alternate"
-    });
-  },
+/* ————————————————
+   CARICAMENTO PAGINE
+——————————————— */
+async function loadPages() {
+  const pageFiles = [
+    "page1.json", "page2.json", "page3.json",
+    "page4.json", "secretA.json", "secretB.json",
+    "page5.json", "page6.json",
+    "page7.json", "page8.json", "page9.json",
+    "table.json",
+    "secretC.json",
+    "secretD.json",
+    "page16.json",
+    "page17.json",
+    "page18.json",
+    "page19.json",
+    "last.json"
+  ];
 
-  /* ————————————————
-     Effetti narrativi
-  ———————————————— */
+  for (let file of pageFiles) {
+    const data = await fetch(`pages/${file}`).then(r => r.json());
+    pages.push(data);
+  }
 
-  noteReveal(el) {
-    el.addEventListener("click", () => {
-      showMessage("Forse anche io sono un po’ così.");
-    });
-  },
+  showStartScreen();
+}
 
-  boxOpen(el) {
-    el.addEventListener("click", () => {
-      showMessage("Non smettere di cercare cose belle.");
-    });
-  },
+/* ————————————————
+   PAGINA INIZIALE
+——————————————— */
+function showStartScreen() {
+  document.getElementById("startScreen").classList.add("visible");
+}
 
-  /* ————————————————
-     Sblocco segreto C (tavolo → chiave)
-  ———————————————— */
+document.getElementById("startButton").onclick = () => {
+  document.getElementById("startScreen").classList.remove("visible");
 
-unlockKey(el) {
-  el.addEventListener("click", () => {
-    showMessage("Sotto una tavola allentata… qualcosa brilla.");
-    unlockedPages.add("table");     // <— AGGIUNGI QUESTO
-    unlockedPages.add("secretC");   // <— GIUSTO
-    showSecretIcon();
-  });
-},
+  const saved = localStorage.getItem("lastPage");
 
-  /* ————————————————
-     Sblocco segreto D tramite rebus Morse
-     (chiave → rebus → stanza)
-  ———————————————— */
-  cipherNote(el) {
-  el.addEventListener("click", () => {
-    showRiddle(
-      "Nfttbhf gps zpv\n\nOgni lettera è spostata di una posizione in avanti.",
-      "message for you",
-      "page17"
-      
-    );
-  });
-},
-woodPattern(el) {
-  el.addEventListener("click", () => {
-    showRiddle(
-      "Guarda solo i segni più profondi.\nFormano lettere.",
-      "Torna al fiume",
-      "page18"
-    );
-  });
-},
-soundStones(el) {
-  el.addEventListener("click", () => {
-    showRiddle(
-      "Sul sasso grande c’è un’unica incisione:\n\n" +
-      "I_  P_OU_\n\n" +
-      "Mancano solo tre lettere.\n" +
-      "Le conosci già.",
-      "im proud",
-      "page19"
-    );
-  });
-},
-
-  startRiddle(el) {
-    el.addEventListener("click", () => {
-      showRiddle(
-        "-.-.   ....   ..   .-   ...-   .\n\n" +
-        "Ogni gruppo è una lettera.\n" +
-        "Decifra il codice. Qual è la parola?",
-        "chiave",
-        "secretD"
-      );
-    });
+  if (saved !== null) {
+    document.getElementById("resumeScreen").classList.add("visible");
+  } else {
+    currentPage = 0;
+    showPage(0);
   }
 };
 
+/* ————————————————
+   SCELTA: RIPRENDI / RICOMINCIA
+——————————————— */
+document.getElementById("resumeBtn").onclick = () => {
+  const saved = parseInt(localStorage.getItem("lastPage"));
+  document.getElementById("resumeScreen").classList.remove("visible");
+  currentPage = saved;
+  showPage(saved);
+};
 
+document.getElementById("restartBtn").onclick = () => {
+  localStorage.removeItem("lastPage");
+  document.getElementById("resumeScreen").classList.remove("visible");
+  currentPage = 0;
+  showPage(0);
+  localStorage.removeItem("unlockedPages");
+  unlockedPages = new Set();
+
+};
+
+/* ————————————————
+   PAGINA FINALE
+——————————————— */
+function showEndScreen() {
+  document.getElementById("endScreen").classList.add("visible");
+}
+
+document.getElementById("restartButton").onclick = () => {
+
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+  }
+
+  document.getElementById("endScreen").classList.remove("visible");
+  showStartScreen();
+};
+
+/* ————————————————
+   MOSTRA PAGINA
+——————————————— */
+function showPage(index) {
+  if (index >= pages.length) {
+    showEndScreen();
+    return;
+  }
+
+  const page = pages[index];
+
+  // BLOCCO PAGINE NON SBLOCCATE
+  if (page.unlock && !unlockedPages.has(page.unlock)) {
+    showMessage("Questa pagina è ancora chiusa.");
+    return;
+  }
+
+  const container = document.getElementById("pageContainer");
+  const sizeClass = page.imageSize ? `img-${page.imageSize}` : "";
+
+  container.innerHTML = `
+    <div class="page visible">
+      <h2>${page.title}</h2>
+      <img src="assets/images/${page.image}" class="sketch ${sizeClass}" id="sketch">
+      <p class="text">${page.text}</p>
+    </div>
+  `;
+
+  const sketch = document.getElementById("sketch");
+
+  // EFFETTI
+  if (page.effects && Array.isArray(page.effects)) {
+    page.effects.forEach(effect => {
+      if (Animations[effect]) Animations[effect](sketch);
+    });
+  }
+
+  // AUDIO
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+  }
+
+  if (page.audio && audioUnlocked) {
+    currentAudio = new Audio(`assets/audio/${page.audio}`);
+    currentAudio.volume = 0.6;
+    currentAudio.play().catch(() => {});
+  }
+
+  // SALVA L’ULTIMA PAGINA VISITATA
+  localStorage.setItem("lastPage", index);
+}
+
+/* ————————————————
+   OVERLAY MESSAGGI
+——————————————— */
+function showMessage(text) {
+  const overlay = document.getElementById("messageOverlay");
+  const msg = document.getElementById("messageText");
+
+  msg.textContent = text;
+  overlay.classList.add("visible");
+
+  overlay.onclick = () => {
+    overlay.classList.remove("visible");
+  };
+}
+
+/* ————————————————
+   ICONA SEGRETA
+——————————————— */
+function showSecretIcon() {
+  const icon = document.getElementById("secretIcon");
+  icon.classList.add("visible");
+
+  setTimeout(() => {
+    icon.classList.remove("visible");
+  }, 2000);
+}
+
+/* ————————————————
+   OVERLAY REBUS
+——————————————— */
+function showRiddle(question, answer, unlockId = null) {
+  const overlay = document.getElementById("riddleOverlay");
+  const text = document.getElementById("riddleText");
+  const input = document.getElementById("riddleInput");
+  const submit = document.getElementById("riddleSubmit");
+  const closeBtn = document.getElementById("riddleClose");
+
+  if (closeBtn) {
+    closeBtn.onclick = () => {
+      overlay.classList.remove("visible");
+    };
+  }
+
+  text.textContent = question;
+  input.value = "";
+  overlay.classList.add("visible");
+
+  submit.onclick = () => {
+    if (input.value.trim().toLowerCase() === answer.toLowerCase()) {
+      overlay.classList.remove("visible");
+
+      if (unlockId) {
+        unlockedPages.add(unlockId);
+        localStorage.setItem("unlockedPages", JSON.stringify([...unlockedPages]));
+        showSecretIcon();
+      }
+
+      showMessage("Codice risolto.");
+    } else {
+      text.textContent = question + "\n\n❌ Risposta errata. Riprova.";
+    }
+  };
+}
+
+/* ————————————————
+   CONTROLLI PAGINE
+——————————————— */
+document.getElementById("nextPage").onclick = () => {
+  currentPage++;
+  localStorage.setItem("lastPage", currentPage);
+  showPage(currentPage);
+};
+
+document.getElementById("prevPage").onclick = () => {
+  if (currentPage > 0) {
+    currentPage--;
+    localStorage.setItem("lastPage", currentPage);
+    showPage(currentPage);
+  }
+};
+
+loadPages();
