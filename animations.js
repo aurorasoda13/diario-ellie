@@ -73,7 +73,7 @@ unlockKey(el) {
     showRiddle(
       "Nfttbhf gps zpv\n\nOgni lettera è spostata di una posizione in avanti.",
       "message for you",
-      "page16"
+      "page17"
       
     );
   });
@@ -83,7 +83,7 @@ woodPattern(el) {
     showRiddle(
       "Guarda solo i segni più profondi.\nFormano lettere.",
       "Torna al fiume",
-      "page17"
+      "page18"
     );
   });
 },
@@ -95,7 +95,7 @@ soundStones(el) {
       "Mancano solo tre lettere.\n" +
       "Le conosci già.",
       "im proud",
-      "page18"
+      "page19"
     );
   });
 },
@@ -106,7 +106,8 @@ soundStones(el) {
         "-.-.   ....   ..   .-   ...-   .\n\n" +
         "Ogni gruppo è una lettera.\n" +
         "Decifra il codice. Qual è la parola?",
-        "chiave"
+        "chiave",
+        "secretD"
       );
     });
   }
